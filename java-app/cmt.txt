@@ -1,8 +1,0 @@
-kubectl create configmap java-app-config --from-file=config -n pet-clinic-app
-
-kubectl delete configmap java-app-config -n pet-clinic-app
-
-
-        command: ["java", "-jar", "/app/java.jar", "--spring.config.location=/opt/config/application.properties", "--spring.profiles.active=mysql"]
-
-mysql-service.pet-clinic-db.svc.cluster.local:3306

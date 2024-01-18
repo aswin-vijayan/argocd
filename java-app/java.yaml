@@ -17,11 +17,6 @@ spec:
       - name: java-app-container
         image: 814200988517.dkr.ecr.us-west-2.amazonaws.com/java-app:4.0.0
         env:
-            - name: DB_URL
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-secret
-                  key: mysql-url
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
