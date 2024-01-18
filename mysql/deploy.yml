@@ -19,10 +19,19 @@ spec:
         image: mysql:latest
         env:
         - name: MYSQL_ROOT_PASSWORD
+          value: root
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-username
+        - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-secret
               key: mysql-password
+        - name: MYSQL_DATABASE
+          value: petclinic
         ports:
         - containerPort: 3306
 ---
