@@ -32,8 +32,15 @@ spec:
               key: mysql-password
         - name: MYSQL_DATABASE
           value: petclinic
-        ports:
-        - containerPort: 3306
+        - name: MYSQL_INITDB_ARGS
+          value: "--init-file=/docker-entrypoint-initdb.d/init.sql"
+        volumeMounts:
+        - name: mysql-config
+          mountPath: /docker-entrypoint-initdb.d
+      volumes:
+      - name: mysql-config
+        configMap:
+          name: mysql-configmap
 ---
 apiVersion: v1
 kind: Service
@@ -49,3 +56,8 @@ spec:
       port: 3306
       targetPort: 3306
       nodePort: 30244
+
+
+
+
+
