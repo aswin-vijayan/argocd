@@ -18,8 +18,8 @@ spec:
       - name: mysql
         image: mysql:latest
         env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: root
+        - name: MYSQL_RANDOM_ROOT_PASSWORD
+          value: "yes"
         - name: MYSQL_USER
           valueFrom:
             secretKeyRef:
