@@ -32,8 +32,6 @@ spec:
               key: mysql-password
         - name: MYSQL_DATABASE
           value: petclinic
-        - name: MYSQL_INITDB_ARGS
-          value: "--init-file=/docker-entrypoint-initdb.d/init.sql"
         volumeMounts:
         - name: mysql-config
           mountPath: /docker-entrypoint-initdb.d
