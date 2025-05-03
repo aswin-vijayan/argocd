@@ -1,0 +1,24 @@
+name: Deploy NGINX to EKS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Configure AWS credentials using OIDC
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        role-to-assume: arn:aws:iam::637423664276:role/oidc-connect
+        aws-region: us-west-2
+
+    - name: Deploy NGINX to EKS
+      run: |
+        kubectl create deployment nginx --image=nginx --port=80 --dry-run=client -o yaml | kubectl apply -f -
