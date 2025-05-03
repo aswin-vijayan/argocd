@@ -24,6 +24,11 @@ jobs:
         role-to-assume: arn:aws:iam::637423664276:role/oidc-connect
         aws-region: us-west-2
 
+
+    - name: Set up kubeconfig
+      run: |
+        aws eks update-kubeconfig --region us-west-2 --name eks-spot-cluster
+
     - name: Deploy NGINX to EKS
       run: |
         kubectl create deployment nginx --image=nginx --port=80 --dry-run=client -o yaml | kubectl apply -f -
